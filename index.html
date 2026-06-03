@@ -736,12 +736,6 @@
                         <span class="error-message">Muss zwischen 1 und 10 liegen.</span>
                     </div>
 
-                    <!-- Allergien -->
-                    <div class="form-group" id="allergiesSection">
-                        <label for="rsvpAllergies" class="form-label">Allergien / Unverträglichkeiten</label>
-                        <input type="text" id="rsvpAllergies" name="allergies" class="form-input" placeholder="z.B. Laktose, glutenfrei (optional)">
-                    </div>
-
                     <!-- Mitbringen Frage (Vorschlag: Salate) -->
                     <div class="form-group" id="bringSection">
                         <label for="rsvpBring" class="form-label">Ich kann mitbringen (Vorschlag: Salate):</label>
@@ -860,7 +854,6 @@
                 daysSpan.textContent = String(days).padStart(2, '0');
                 hoursSpan.textContent = String(hours).padStart(2, '0');
                 minutesSpan.textContent = String(minutes).padStart(2, '0');
-                secondsSpan.textContent = String(seconds).padStart(2, '0');
             }
 
             updateTimer();
@@ -875,19 +868,16 @@
             const rsvpForm = document.getElementById('rsvpForm');
             const radioZusage = document.getElementById('radioZusage');
             const radioAbsage = document.getElementById('radioAbsage');
-            const allergiesSection = document.getElementById('allergiesSection');
             const bringSection = document.getElementById('bringSection');
             const rsvpGuests = document.getElementById('rsvpGuests');
 
-            // Zusage / Absage Steuerung: Bei Absage Allergie- & Mitbringen-Feld verstecken und Gästeanzahl auf 0 setzen
+            // Zusage / Absage Steuerung: Bei Absage Mitbringen-Feld verstecken und Gästeanzahl auf 0 setzen
             function handleAttendanceChange() {
                 if (radioAbsage.checked) {
-                    allergiesSection.style.display = 'none';
                     bringSection.style.display = 'none';
                     rsvpGuests.value = '0';
                     rsvpGuests.disabled = true;
                 } else {
-                    allergiesSection.style.display = 'flex';
                     bringSection.style.display = 'flex';
                     if (rsvpGuests.value === '0') rsvpGuests.value = '1';
                     rsvpGuests.disabled = false;
