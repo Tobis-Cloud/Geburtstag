@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Einladung zu meinem Geburtstag! Bitte gebt mir über das RSVP-Formular Rückmeldung, ob ihr dabei sein könnt.">
+    <title>Einladung zum Geburtstag | Lasst uns Geburtstag feiern!</title>
+
+    <!-- Google Fonts: Playfair Display & Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome CDN für Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================================================
+           1. DESIGN SYSTEM & GLOBALE VARIABLEN
+           ========================================================================== */
+        :root {
+            --primary: #2b301c;          /* Muted Dark Olive */
+            --accent: #8a936a;           /* Sage Green */
+            --accent-light: #d8dfbe;     /* Light Sage */
+            --cream-light: #fff9f2;      /* Ivory Background */
+            --cream-dark: #f2f0e0;       /* Warm Beige Background */
+            --white: #ffffff;
+            --text-main: #2b301c;
+            --text-muted: #5a604a;
+            
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+            
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --shadow-sm: 0 4px 10px rgba(43, 48, 28, 0.03);
+            --shadow-md: 0 10px 30px rgba(43, 48, 28, 0.05);
+            --shadow-lg: 0 20px 50px rgba(43, 48, 28, 0.08);
+            
+            --container-width: 750px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--cream-light);
+            color: var(--text-main);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--cream-light);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 3px;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        p {
+            font-weight: 300;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .bg-light {
+            background-color: var(--cream-light);
+        }
+
+        .bg-dark {
+            background-color: var(--cream-dark);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 400;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 1px;
+            background: var(--accent);
+            margin: 1rem auto 0;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2.2rem;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(138, 147, 106, 0.15);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(43, 48, 28, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--accent);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           2. HERO SEKTION & TIMER
+           ========================================================================== */
+        .hero {
+            background-color: var(--cream-light);
+            padding: 7rem 0 4rem;
+            text-align: center;
+        }
+
+        .hero-subtitle {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            line-height: 1.2;
+            color: var(--text-main);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-date-location {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            margin-bottom: 3.5rem;
+        }
+
+        /* Timer-Styling */
+        .timer-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .timer-box {
+            background-color: var(--cream-dark);
+            border-radius: 12px;
+            padding: 1.2rem 0.8rem;
+            min-width: 85px;
+            text-align: center;
+            border: 1px solid rgba(138, 147, 106, 0.15);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .timer-box:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent);
+        }
+
+        .timer-num {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            color: var(--text-main);
+            font-weight: 400;
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+
+        .timer-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+        }
+
+        /* ==========================================================================
+           3. WANN & WO
+           ========================================================================== */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin-top: 1rem;
+        }
+
+        .info-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            border: 1px solid rgba(138, 147, 106, 0.1);
+            transition: var(--transition);
+        }
+
+        .info-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+        }
+
+        .info-card i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1.2rem;
+        }
+
+        .info-card h3 {
+            font-size: 1.3rem;
+            color: var(--text-main);
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+
+        .info-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 400;
+        }
+
+        /* ==========================================================================
+           4. GESCHENKE
+           ========================================================================== */
+        .gifts-box {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .gifts-box i {
+            font-size: 2.2rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .gifts-box p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        /* ==========================================================================
+           5. RSVP / RÜCKMELDUNG
+           ========================================================================== */
+        .rsvp-card {
+            background-color: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(138, 147, 106, 0.15);
+            padding: 3rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .rsvp-intro {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .rsvp-intro p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        /* Formular Styling */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input {
+            font-family: var(--font-body);
+            padding: 0.9rem 1.1rem;
+            border: 1px solid rgba(138, 147, 106, 0.25);
+            background-color: var(--cream-light);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background-color: var(--white);
+            box-shadow: 0 0 10px rgba(138, 147, 106, 0.08);
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Radio Buttons */
+        .radio-group {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 0.3rem;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            font-size: 0.9rem;
+            user-select: none;
+        }
+
+        .radio-label input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .radio-custom {
+            height: 18px;
+            width: 18px;
+            background-color: var(--cream-dark);
+            border: 2px solid rgba(138, 147, 106, 0.25);
+            border-radius: 50%;
+            margin-right: 0.6rem;
+            display: inline-block;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .radio-label:hover input ~ .radio-custom {
+            border-color: var(--accent);
+        }
+
+        .radio-label input:checked ~ .radio-custom {
+            background-color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .radio-custom::after {
+            content: "";
+            position: absolute;
+            display: none;
+            top: 4px;
+            left: 4px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--white);
+        }
+
+        .radio-label input:checked ~ .radio-custom::after {
+            display: block;
+        }
+
+        .error-message {
+            color: #d93838;
+            font-size: 0.75rem;
+            margin-top: 0.4rem;
+            display: none;
+        }
+
+        .form-group.invalid .form-input {
+            border-color: #d93838;
+            background-color: #fff9f9;
+        }
+
+        .form-group.invalid .error-message {
+            display: block;
+        }
+
+        /* ==========================================================================
+           6. FOOTER
+           ========================================================================== */
+        footer {
+            background-color: var(--cream-dark);
+            color: var(--text-main);
+            text-align: center;
+            padding: 4rem 0 3rem;
+            border-top: 1px solid rgba(138, 147, 106, 0.15);
+        }
+
+        .footer-thanks {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            color: var(--text-main);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            list-style: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-copyright {
+            font-size: 0.75rem;
+            color: rgba(43, 48, 28, 0.5);
+            font-weight: 400;
+        }
+
+        /* ==========================================================================
+           7. POPUP MODALS
+           ========================================================================== */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(43, 48, 28, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background-color: var(--cream-light);
+            border-radius: 16px;
+            padding: 3rem;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            position: relative;
+            transform: scale(0.9);
+            transition: var(--transition);
+            border: 1px solid rgba(138, 147, 106, 0.15);
+        }
+
+        .modal.active .modal-card {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            background: none;
+            border: none;
+        }
+
+        .modal-icon {
+            font-size: 3.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+
+        .modal-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* ==========================================================================
+           8. SCROLL REVEAL ANIMATIONS
+           ========================================================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================================================
+           9. RESPONSIVENESS
+           ========================================================================== */
+        @media (max-width: 600px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .timer-container {
+                gap: 0.8rem;
+            }
+
+            .timer-box {
+                min-width: 70px;
+                padding: 1rem 0.5rem;
+            }
+
+            .rsvp-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .radio-group {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================================================
+       HERO SEKTION (Titel & Timer)
+       ========================================================================== -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <span class="hero-subtitle">Herzliche Einladung</span>
+            <h1 class="hero-title">Lasst uns Geburtstag feiern!</h1>
+            <div class="hero-date-location">Samstag, 27. Juni 2026 um 15:00 Uhr</div>
+            
+            <!-- Countdown-Timer bis zum 27.06.2026 um 15:00 Uhr -->
+            <div class="timer-container" id="timer">
+                <div class="timer-box">
+                    <span class="timer-num" id="days">00</span>
+                    <span class="timer-label">Tage</span>
+                </div>
+                <div class="timer-box">
+                    <span class="timer-num" id="hours">00</span>
+                    <span class="timer-label">Std</span>
+                </div>
+                <div class="timer-box">
+                    <span class="timer-num" id="minutes">00</span>
+                    <span class="timer-label">Min</span>
+                </div>
+                <div class="timer-box">
+                    <span class="timer-num" id="seconds">00</span>
+                    <span class="timer-label">Sek</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       INFO SEKTION (Wann & Wo)
+       ========================================================================== -->
+    <section class="section bg-dark" id="infos">
+        <div class="container">
+            <div class="info-grid reveal">
+                
+                <!-- Wann und Wo Card -->
+                <div class="info-card">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    <h3>Wann & Wo</h3>
+                    <p style="margin-bottom: 1.5rem;">
+                        <strong>Karl-Jaggy-Straße</strong><br>
+                        Karl-Jaggy-Str. 22<br>
+                        72116 Mössingen
+                    </p>
+                    <a href="https://maps.app.goo.gl/fpxPvrGra81y4kaT7" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size: 0.75rem; padding: 0.6rem 1.5rem;">Route planen</a>
+                </div>
+
+                <!-- Sonstiges / Dresscode Card -->
+                <div class="info-card">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <h3>Wichtiges</h3>
+                    <p>
+                        <strong>Dresscode:</strong> Kein Dresscode (Kommt einfach so, wie ihr euch wohlfühlt!)<br><br>
+                        Gute Laune und Hunger sind mitzubringen. Für Speis und Trank ist bestens gesorgt!
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       GESCHENKE
+       ========================================================================== -->
+    <section class="section bg-light" id="gifts">
+        <div class="container">
+            <div class="gifts-box reveal">
+                <i class="fa-solid fa-gift"></i>
+                <h2 class="section-title">Geschenke</h2>
+                <p>
+                    Für mich ist das größte Geschenk, diesen Tag gemeinsam mit euch zu verbringen und zu feiern!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       RSVP / RÜCKMELDUNG FORMULAR (Inline)
+       ========================================================================== -->
+    <section class="section bg-dark" id="rsvp">
+        <div class="container">
+            <div class="rsvp-card reveal">
+                <div class="rsvp-intro">
+                    <h2 class="section-title" style="margin-bottom: 1rem;">Rückmeldung</h2>
+                    <p>Bitte gib mir bis zum <strong>31. Mai 2026</strong> Rückmeldung, ob du dabei sein kannst. Ich freue mich auf deine Antwort!</p>
+                </div>
+
+                <!-- Formular -->
+                <form id="rsvpForm" novalidate>
+                    <!-- Name -->
+                    <div class="form-group" id="group-name">
+                        <label for="rsvpName" class="form-label">Dein Name *</label>
+                        <input type="text" id="rsvpName" name="name" class="form-input" placeholder="z.B. Lena Schäfer" required>
+                        <span class="error-message">Bitte gib deinen Namen ein.</span>
+                    </div>
+
+                    <!-- Zusage/Absage -->
+                    <div class="form-group">
+                        <label class="form-label">Bist du dabei? *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="attendance" value="zusage" checked id="radioZusage">
+                                <span class="radio-custom"></span>
+                                Ich komme gerne!
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="attendance" value="absage" id="radioAbsage">
+                                <span class="radio-custom"></span>
+                                Ich muss leider absagen.
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Personenanzahl -->
+                    <div class="form-group" id="group-guests">
+                        <label for="rsvpGuests" class="form-label">Personenanzahl gesamt *</label>
+                        <input type="number" id="rsvpGuests" name="guests" class="form-input" min="1" max="10" value="1" required>
+                        <span class="error-message">Muss zwischen 1 und 10 liegen.</span>
+                    </div>
+
+                    <!-- Allergien -->
+                    <div class="form-group" id="allergiesSection">
+                        <label for="rsvpAllergies" class="form-label">Allergien / Unverträglichkeiten</label>
+                        <input type="text" id="rsvpAllergies" name="allergies" class="form-input" placeholder="z.B. Laktose, glutenfrei (optional)">
+                    </div>
+
+                    <!-- Mitbringen Frage (Vorschlag: Salate) -->
+                    <div class="form-group" id="bringSection">
+                        <label for="rsvpBring" class="form-label">Ich kann mitbringen (Vorschlag: Salate):</label>
+                        <input type="text" id="rsvpBring" name="bring" class="form-input" placeholder="z.B. Nudelsalat, Kartoffelsalat (optional)">
+                    </div>
+
+                    <!-- Nachricht -->
+                    <div class="form-group">
+                        <label for="rsvpMessage" class="form-label">Nachricht</label>
+                        <textarea id="rsvpMessage" name="message" class="form-input" placeholder="Deine Nachricht... (optional)"></textarea>
+                    </div>
+
+                    <div style="margin-top: 2rem; text-align: center;">
+                        <button type="submit" class="btn btn-primary" style="width: 100%; max-width: 300px;">Absenden</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+    <footer>
+        <div class="container">
+            <div class="footer-thanks">
+                Ich freue mich auf euch!<br>
+                <span style="font-family: var(--font-heading); font-size: 1.1rem; font-style: italic; opacity: 0.8; margin-top: 0.8rem; display: inline-block;">Soli deo Gloria</span>
+            </div>
+            
+            <ul class="footer-links">
+                <li><a href="#" id="impressumLink">Impressum</a></li>
+            </ul>
+            
+            <div class="footer-copyright">
+                &copy; 2026 Einladung zum Geburtstag. Alle Rechte vorbehalten.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+       ERFOLGS-MODAL (Pop-Up nach Absenden)
+       ========================================================================== -->
+    <div class="modal" id="successModal">
+        <div class="modal-card">
+            <button class="modal-close" id="closeSuccess">&times;</button>
+            <div class="modal-icon">
+                <i class="fa-regular fa-circle-check"></i>
+            </div>
+            <h3 class="modal-title">Vielen Dank!</h3>
+            <p class="modal-text" id="successModalText">Deine Rückmeldung wurde erfolgreich übermittelt.</p>
+            <button class="btn btn-primary" id="btnSuccessClose" style="width: 100%;">Schließen</button>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+       IMPRESSUM MODAL (Vereinfacht)
+       ========================================================================== -->
+    <div class="modal" id="impressumModal">
+        <div class="modal-card">
+            <button class="modal-close" id="closeImpressum">&times;</button>
+            <div class="modal-icon">
+                <i class="fa-solid fa-address-card"></i>
+            </div>
+            <h3 class="modal-title" style="margin-bottom: 1.5rem;">Impressum</h3>
+            <div class="modal-text" style="text-align: center; line-height: 1.8;">
+                <p style="font-size: 1.1rem; font-weight: 600; color: var(--primary); margin-bottom: 0.5rem;">Tobias Ayen</p>
+                <p style="margin-bottom: 1.5rem;">
+                    Im Bulziggarten 41<br>
+                    72116 Mössingen
+                </p>
+                <p style="font-family: var(--font-heading); font-style: italic; font-size: 1.1rem; color: var(--text-muted); margin-top: 1.5rem; opacity: 0.8;">
+                    allein Gott die Ehre
+                </p>
+            </div>
+            <div style="margin-top: 2rem;">
+                <button class="btn btn-primary" id="btnImpressumClose" style="width: 100%;">Schließen</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ==========================================================================
+       JAVASCRIPT LOGIK
+       ========================================================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // ==========================================
+            // A. TIMER (COUNTDOWN ZUM GEBURTSTAG: 27.06.2026 um 15:00 Uhr)
+            // ==========================================
+            const targetDate = new Date('2026-06-27T15:00:00').getTime();
+
+            const daysSpan = document.getElementById('days');
+            const hoursSpan = document.getElementById('hours');
+            const minutesSpan = document.getElementById('minutes');
+            const secondsSpan = document.getElementById('seconds');
+
+            function updateTimer() {
+                const now = new Date().getTime();
+                const difference = targetDate - now;
+
+                if (difference <= 0) {
+                    document.getElementById('timer').innerHTML = `
+                        <div style="grid-column: span 4; font-family: var(--font-heading); font-size: 1.8rem; color: var(--accent); text-align: center; width: 100%;">
+                            Die Feier hat begonnen! 🎉
+                        </div>`;
+                    return;
+                }
+
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                daysSpan.textContent = String(days).padStart(2, '0');
+                hoursSpan.textContent = String(hours).padStart(2, '0');
+                minutesSpan.textContent = String(minutes).padStart(2, '0');
+                secondsSpan.textContent = String(seconds).padStart(2, '0');
+            }
+
+            updateTimer();
+            setInterval(updateTimer, 1000);
+
+
+            // ==========================================
+            // B. RSVP & GOOGLE SHEETS
+            // ==========================================
+            const googleScriptURL = 'https://script.google.com/macros/s/AKfycbz0Wkry9TBGvdEO0jNN39hgJBGlC2sllyL28GmDXMsYMYopImJhXPSw1spTjlcGqBn6rw/exec';
+
+            const rsvpForm = document.getElementById('rsvpForm');
+            const radioZusage = document.getElementById('radioZusage');
+            const radioAbsage = document.getElementById('radioAbsage');
+            const allergiesSection = document.getElementById('allergiesSection');
+            const bringSection = document.getElementById('bringSection');
+            const rsvpGuests = document.getElementById('rsvpGuests');
+
+            // Zusage / Absage Steuerung: Bei Absage Allergie- & Mitbringen-Feld verstecken und Gästeanzahl auf 0 setzen
+            function handleAttendanceChange() {
+                if (radioAbsage.checked) {
+                    allergiesSection.style.display = 'none';
+                    bringSection.style.display = 'none';
+                    rsvpGuests.value = '0';
+                    rsvpGuests.disabled = true;
+                } else {
+                    allergiesSection.style.display = 'flex';
+                    bringSection.style.display = 'flex';
+                    if (rsvpGuests.value === '0') rsvpGuests.value = '1';
+                    rsvpGuests.disabled = false;
+                }
+            }
+
+            radioZusage.addEventListener('change', handleAttendanceChange);
+            radioAbsage.addEventListener('change', handleAttendanceChange);
+
+            // RSVP Formular Absenden
+            rsvpForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                let isFormValid = true;
+                const rsvpName = document.getElementById('rsvpName');
+
+                // Validierung: Name
+                const nameGroup = document.getElementById('group-name');
+                if (rsvpName.value.trim() === '') {
+                    nameGroup.classList.add('invalid');
+                    isFormValid = false;
+                } else {
+                    nameGroup.classList.remove('invalid');
+                }
+
+                // Validierung: Gästeanzahl (nur falls Zusage)
+                const guestsGroup = document.getElementById('group-guests');
+                if (radioZusage.checked) {
+                    const guestsVal = parseInt(rsvpGuests.value);
+                    if (isNaN(guestsVal) || guestsVal < 1 || guestsVal > 10) {
+                        guestsGroup.classList.add('invalid');
+                        isFormValid = false;
+                    } else {
+                        guestsGroup.classList.remove('invalid');
+                    }
+                } else {
+                    guestsGroup.classList.remove('invalid');
+                }
+
+                // Absenden an Google Sheets
+                if (isFormValid) {
+                    const submitBtn = rsvpForm.querySelector('button[type="submit"]');
+                    const originalBtnText = submitBtn.textContent;
+                    
+                    const successModal = document.getElementById('successModal');
+                    const successModalText = document.getElementById('successModalText');
+                    
+                    let messageText = '';
+                    if (radioAbsage.checked) {
+                        messageText = `Vielen Dank für deine Rückmeldung, ${rsvpName.value}. Schade, dass du nicht kommen kannst, aber danke fürs Bescheid geben!`;
+                    } else {
+                        const count = rsvpGuests.value;
+                        messageText = `Super, ich habe deine Zusage für ${count} Person(en) vermerkt! Ich freue mich riesig auf dich, ${rsvpName.value}!`;
+                    }
+                    
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Wird gesendet...';
+                    
+                    const formData = new FormData(rsvpForm);
+                    
+                    fetch(googleScriptURL, {
+                        method: 'POST',
+                        body: formData,
+                        mode: 'no-cors'
+                    })
+                    .then(() => {
+                        successModalText.textContent = messageText;
+                        successModal.classList.add('active');
+                        rsvpForm.reset();
+                        handleAttendanceChange();
+                    })
+                    .catch(err => {
+                        console.error('Fehler beim Senden:', err);
+                        successModalText.textContent = messageText + '\n\n(Hinweis: Die Daten konnten nicht online gespeichert werden. Bitte gib mir direkt Bescheid.)';
+                        successModal.classList.add('active');
+                    })
+                    .finally(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalBtnText;
+                    });
+                }
+            });
+
+
+            // ==========================================
+            // C. MODALS STEUERUNG
+            // ==========================================
+            const successModal = document.getElementById('successModal');
+            const closeSuccess = document.getElementById('closeSuccess');
+            const btnSuccessClose = document.getElementById('btnSuccessClose');
+            
+            const impressumModal = document.getElementById('impressumModal');
+            const impressumLink = document.getElementById('impressumLink');
+            const closeImpressum = document.getElementById('closeImpressum');
+            const btnImpressumClose = document.getElementById('btnImpressumClose');
+
+            function closeAllModals() {
+                successModal.classList.remove('active');
+                impressumModal.classList.remove('active');
+            }
+
+            closeSuccess.addEventListener('click', closeAllModals);
+            btnSuccessClose.addEventListener('click', closeAllModals);
+
+            closeImpressum.addEventListener('click', closeAllModals);
+            btnImpressumClose.addEventListener('click', closeAllModals);
+
+            impressumLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                impressumModal.classList.add('active');
+            });
+
+            window.addEventListener('click', function(e) {
+                if (e.target === successModal || e.target === impressumModal) {
+                    closeAllModals();
+                }
+            });
+
+
+            // ==========================================
+            // D. SCROLL REVEAL ANMATIONEN
+            // ==========================================
+            const reveals = document.querySelectorAll('.reveal');
+
+            function checkReveal() {
+                const triggerBottom = window.innerHeight * 0.9;
+                reveals.forEach(reveal => {
+                    const revealTop = reveal.getBoundingClientRect().top;
+                    if (revealTop < triggerBottom) {
+                        reveal.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', checkReveal);
+            checkReveal();
+        });
+    </script>
+</body>
+</html>
