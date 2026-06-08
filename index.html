@@ -609,6 +609,188 @@
                 gap: 0.8rem;
             }
         }
+
+        /* ==========================================================================
+           10. GESCHENKELISTE (DYNAMISCH)
+           ========================================================================== */
+        .loader-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin: 3rem 0;
+        }
+
+        .gifts-list-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        .gift-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(138, 147, 106, 0.15);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 180px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gift-card:hover:not(.reserved) {
+            transform: translateY(-3px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+        }
+
+        .gift-card.reserved {
+            background-color: rgba(43, 48, 28, 0.02);
+            border-color: rgba(43, 48, 28, 0.08);
+            opacity: 0.85;
+        }
+
+        .gift-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .gift-category {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background-color: var(--cream-dark);
+            color: var(--text-muted);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .gift-name {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+
+        .gift-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-top: auto;
+        }
+
+        .gift-link-btn {
+            font-size: 0.75rem;
+            color: var(--accent);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-weight: 500;
+            align-self: flex-start;
+            transition: var(--transition);
+        }
+
+        .gift-link-btn:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .gift-status {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            width: 100%;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .gift-status.free {
+            background-color: var(--accent-light);
+            color: var(--primary);
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .gift-status.free:hover {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .gift-status.taken {
+            background-color: rgba(43, 48, 28, 0.07);
+            color: var(--text-muted);
+            border: 1px solid rgba(43, 48, 28, 0.05);
+        }
+
+
+
+        .gifts-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.4rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(138, 147, 106, 0.15);
+            padding-bottom: 1rem;
+        }
+
+        .gift-tab-btn {
+            font-family: var(--font-body);
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.2rem 0.4rem;
+            border-radius: 20px;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            outline: none;
+        }
+
+        .gift-tab-btn i {
+            color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .gift-tab-btn:hover {
+            color: var(--primary);
+            background-color: rgba(138, 147, 106, 0.05);
+        }
+
+        .gift-tab-btn.active {
+            color: var(--white);
+            background-color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .gift-tab-btn.active i {
+            color: var(--accent-light);
+        }
     </style>
 </head>
 <body>
@@ -620,9 +802,9 @@
         <div class="container">
             <span class="hero-subtitle">Herzliche Einladung</span>
             <h1 class="hero-title">Lasst uns Geburtstag feiern!</h1>
-            <div class="hero-date-location">Samstag, 27. Juni 2026 um 15:00 Uhr</div>
+            <div class="hero-date-location">Freitag, 26. Juni 2026 um 15:00 Uhr</div>
             
-            <!-- Countdown-Timer bis zum 27.06.2026 um 15:00 Uhr -->
+            <!-- Countdown-Timer bis zum 26.06.2026 um 15:00 Uhr -->
             <div class="timer-container" id="timer">
                 <div class="timer-box">
                     <span class="timer-num" id="days">00</span>
@@ -685,9 +867,32 @@
             <div class="gifts-box reveal">
                 <i class="fa-solid fa-gift"></i>
                 <h2 class="section-title">Geschenke</h2>
-                <p>
+                <p style="margin-bottom: 1rem;">
                     Für mich ist das größte Geschenk, diesen Tag gemeinsam mit euch zu verbringen und zu feiern!
                 </p>
+                <p style="font-size: 0.95rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem;">
+                    Wenn du mir dennoch etwas schenken möchtest, findest du hier meine Wunschliste. Du kannst ein Geschenk reservieren, damit nichts doppelt geschenkt wird.
+                </p>
+
+                <!-- Reiter (Tabs) -->
+                <div class="gifts-tabs">
+                    <button class="gift-tab-btn active" data-tab="free">
+                        <i class="fa-solid fa-gift"></i> Verfügbare Wünsche
+                    </button>
+                    <button class="gift-tab-btn" data-tab="reserved">
+                        <i class="fa-solid fa-lock"></i> Reservierte Wünsche
+                    </button>
+                </div>
+                
+                <!-- Lade-Indikator -->
+                <div id="gifts-loader" class="loader-container">
+                    <i class="fa-solid fa-circle-notch fa-spin"></i> Wunschliste wird geladen...
+                </div>
+
+                <!-- Wunschliste Grid -->
+                <div id="gifts-list" class="gifts-list-grid" style="display: none;">
+                    <!-- Wird dynamisch befüllt -->
+                </div>
             </div>
         </div>
     </section>
@@ -819,15 +1024,49 @@
 
 
     <!-- ==========================================================================
+       GESCHENK RESERVIEREN MODAL
+       ========================================================================== -->
+    <div class="modal" id="giftModal">
+        <div class="modal-card">
+            <button class="modal-close" id="closeGiftModal">&times;</button>
+            <div class="modal-icon">
+                <i class="fa-solid fa-gift"></i>
+            </div>
+            <h3 class="modal-title">Geschenk reservieren</h3>
+            <div class="modal-text" id="giftModalText">Möchtest du dieses Geschenk reservieren?</div>
+            
+            <form id="giftReserveForm" novalidate>
+                <input type="hidden" id="reserveGiftId" name="giftId">
+                <div class="form-group" id="group-reserve-name" style="text-align: left;">
+                    <label for="reserveName" class="form-label">Dein Name *</label>
+                    <input type="text" id="reserveName" name="name" class="form-input" placeholder="z.B. Maria Müller" required>
+                    <span class="error-message">Bitte gib deinen Namen an. (Pflichtfeld)</span>
+                </div>
+                
+                <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                    <button type="button" class="btn btn-outline" id="btnGiftCancel" style="flex: 1; padding: 0.8rem 1rem;">Abbrechen</button>
+                    <button type="submit" class="btn btn-primary" id="btnGiftConfirm" style="flex: 1; padding: 0.8rem 1rem;">Reservieren</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    <!-- ==========================================================================
+       GESCHENK STORNIEREN CONFIRM MODAL
+       ========================================================================== -->
+
+    <!-- ==========================================================================
        JAVASCRIPT LOGIK
        ========================================================================== -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
             // ==========================================
-            // A. TIMER (COUNTDOWN ZUM GEBURTSTAG: 27.06.2026 um 15:00 Uhr)
+            // A. TIMER (COUNTDOWN ZUM GEBURTSTAG: 26.06.2026 um 15:00 Uhr)
             // ==========================================
-            const targetDate = new Date('2026-06-27T15:00:00').getTime();
+            const targetDate = new Date('2026-06-26T15:00:00').getTime();
 
             const daysSpan = document.getElementById('days');
             const hoursSpan = document.getElementById('hours');
@@ -975,9 +1214,12 @@
             const closeImpressum = document.getElementById('closeImpressum');
             const btnImpressumClose = document.getElementById('btnImpressumClose');
 
+            const giftModal = document.getElementById('giftModal');
+
             function closeAllModals() {
                 successModal.classList.remove('active');
                 impressumModal.classList.remove('active');
+                if (giftModal) giftModal.classList.remove('active');
             }
 
             closeSuccess.addEventListener('click', closeAllModals);
@@ -992,7 +1234,7 @@
             });
 
             window.addEventListener('click', function(e) {
-                if (e.target === successModal || e.target === impressumModal) {
+                if (e.target === successModal || e.target === impressumModal || e.target === giftModal) {
                     closeAllModals();
                 }
             });
@@ -1012,6 +1254,208 @@
                     }
                 });
             }
+
+            // ==========================================
+            // E. GESCHENKELISTE LOGIK
+            // ==========================================
+            const giftsLoader = document.getElementById('gifts-loader');
+            const giftsList = document.getElementById('gifts-list');
+            const giftReserveForm = document.getElementById('giftReserveForm');
+            const reserveGiftId = document.getElementById('reserveGiftId');
+            const reserveName = document.getElementById('reserveName');
+            const closeGiftModal = document.getElementById('closeGiftModal');
+            const btnGiftCancel = document.getElementById('btnGiftCancel');
+
+
+            const tabButtons = document.querySelectorAll('.gift-tab-btn');
+
+            let allGifts = [];
+            let activeGiftTab = 'free'; // 'free' oder 'reserved'
+
+            function escapeHtml(str) {
+                if (!str) return '';
+                return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+            }
+
+            // Tab-Umschaltung
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    tabButtons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    activeGiftTab = this.getAttribute('data-tab');
+                    renderGifts();
+                });
+            });
+
+            // Geschenke aus Google Sheets laden
+            function loadGifts() {
+                if (!giftsLoader || !giftsList) return;
+                
+                giftsLoader.style.display = 'flex';
+                giftsList.style.display = 'none';
+                
+                fetch(`${googleScriptURL}?action=getGifts`)
+                    .then(response => response.json())
+                    .then(data => {
+                        allGifts = data || [];
+                        renderGifts();
+                    })
+                    .catch(err => {
+                        console.error('Fehler beim Laden der Geschenke:', err);
+                        giftsLoader.innerHTML = '<i class="fa-solid fa-circle-exclamation" style="color: #d93838;"></i> Fehler beim Laden der Wunschliste. Bitte lade die Seite neu.';
+                    });
+            }
+
+            // Geschenke basierend auf aktivem Tab rendern
+            function renderGifts() {
+                if (!giftsList) return;
+                giftsList.innerHTML = '';
+                
+                // Filtern nach Tab-Status
+                let filteredGifts = allGifts.filter(gift => {
+                    if (activeGiftTab === 'free') {
+                        return gift.status !== 'reserviert';
+                    } else {
+                        return gift.status === 'reserviert';
+                    }
+                });
+
+                if (filteredGifts.length === 0) {
+                    const emptyText = activeGiftTab === 'free' 
+                        ? 'Aktuell sind alle Wünsche reserviert oder die Liste ist leer. 🎉' 
+                        : 'Bisher wurden noch keine Wünsche reserviert.';
+                    giftsList.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 2rem 0;">${emptyText}</p>`;
+                } else {
+                    // Sortieren nach Kategorie, dann nach Name
+                    filteredGifts.sort((a, b) => {
+                        const catA = (a.category || '').toLowerCase();
+                        const catB = (b.category || '').toLowerCase();
+                        if (catA !== catB) return catA.localeCompare(catB);
+                        return (a.name || '').localeCompare(b.name || '');
+                    });
+
+                    filteredGifts.forEach(gift => {
+                        const card = document.createElement('div');
+                        card.className = `gift-card ${gift.status === 'reserviert' ? 'reserved' : ''}`;
+                        
+                        const categoryHtml = gift.category ? `<span class="gift-category">${escapeHtml(gift.category)}</span>` : '';
+                        
+                        let linkHtml = '';
+                        if (gift.link && gift.link.trim().startsWith('http')) {
+                            linkHtml = `<a href="${escapeHtml(gift.link.trim())}" target="_blank" rel="noopener noreferrer" class="gift-link-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Link ansehen</a>`;
+                        }
+
+                        if (gift.status === 'reserviert') {
+                            card.innerHTML = `
+                                <div>
+                                    <div class="gift-header">
+                                        ${categoryHtml}
+                                    </div>
+                                    <div class="gift-name">${escapeHtml(gift.name)}</div>
+                                </div>
+                                <div class="gift-actions">
+                                    ${linkHtml}
+                                    <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+                                        Reserviert für: <strong>${escapeHtml(gift.reservedBy)}</strong>
+                                    </div>
+                                </div>
+                            `;
+                        } else {
+                            card.innerHTML = `
+                                <div>
+                                    <div class="gift-header">
+                                        ${categoryHtml}
+                                    </div>
+                                    <div class="gift-name">${escapeHtml(gift.name)}</div>
+                                </div>
+                                <div class="gift-actions">
+                                    ${linkHtml}
+                                    <button class="gift-status free" data-id="${gift.id}">
+                                        <i class="fa-solid fa-hand-holding-heart"></i> Reservieren
+                                    </button>
+                                </div>
+                            `;
+                            
+                            // Event-Listener für Reservierungs-Button
+                            card.querySelector('.free').addEventListener('click', function() {
+                                openGiftReservation(gift.id, gift.name);
+                            });
+                        }
+                        giftsList.appendChild(card);
+                    });
+                }
+                
+                giftsLoader.style.display = 'none';
+                giftsList.style.display = 'grid';
+            }
+
+            // Reservierung öffnen
+            function openGiftReservation(id, name) {
+                if (!giftModal) return;
+                reserveGiftId.value = id;
+                document.getElementById('giftModalText').innerHTML = `Möchtest du <strong>${escapeHtml(name)}</strong> reservieren? Bitte gib deinen Namen an, damit ich weiß, von wem das Geschenk kommt.`;
+                document.getElementById('group-reserve-name').classList.remove('invalid');
+                reserveName.value = '';
+                giftModal.classList.add('active');
+            }
+
+            if (closeGiftModal) closeGiftModal.addEventListener('click', closeAllModals);
+            if (btnGiftCancel) btnGiftCancel.addEventListener('click', closeAllModals);
+
+            // Reservierung absenden
+            if (giftReserveForm) {
+                giftReserveForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const nameVal = reserveName.value.trim();
+                    const idVal = reserveGiftId.value;
+                    const nameGroup = document.getElementById('group-reserve-name');
+                    
+                    if (nameVal === '') {
+                        nameGroup.classList.add('invalid');
+                        return;
+                    }
+                    nameGroup.classList.remove('invalid');
+                    
+                    const submitBtn = document.getElementById('btnGiftConfirm');
+                    const originalBtnText = submitBtn.textContent;
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Wird reserviert...';
+                    
+                    const formData = new FormData();
+                    formData.append('action', 'reserveGift');
+                    formData.append('giftId', idVal);
+                    formData.append('name', nameVal);
+                    
+                    fetch(googleScriptURL, {
+                        method: 'POST',
+                        body: formData,
+                        mode: 'no-cors'
+                    })
+                    .then(() => {
+                        closeAllModals();
+                        const successModal = document.getElementById('successModal');
+                        const successModalText = document.getElementById('successModalText');
+                        successModalText.textContent = `Vielen Dank! Das Geschenk wurde erfolgreich für dich reserviert.`;
+                        successModal.classList.add('active');
+                        loadGifts();
+                    })
+                    .catch(err => {
+                        console.error('Fehler:', err);
+                        alert('Verbindungsfehler. Bitte versuche es erneut.');
+                    })
+                    .finally(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalBtnText;
+                    });
+                });
+            }
+
+
+
+            // Initiale Ladung
+            loadGifts();
+
 
             window.addEventListener('scroll', checkReveal);
             checkReveal();
